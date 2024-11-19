@@ -1,0 +1,46 @@
+.calendareDates {
+  @apply grid grid-cols-7;
+}
+
+.calendareDate {
+  @apply mx-auto text-center p-1 w-fit flex items-center justify-center;
+}
+.active {
+  @apply bg-red-500 text-white rounded-xl;
+}
+
+.pagination {
+  @apply flex justify-end gap-2 items-center;
+}
+
+.paginationButton {
+  @apply p-1;
+}
+
+.todayButton {
+  @apply text-primary;
+}
+
+.header {
+  @apply flex justify-between items-center mb-3;
+}
+
+.modalTitle {
+  @apply font-bold text-xl;
+}
+
+.lessons {
+  @apply mx-1 mt-3 flex flex-col justify-center gap-3;
+}
+
+.lesson {
+  @apply bg-slate-50 p-1 pl-2 w-full rounded-xl flex flex-col items-start;
+}
+
+.name {
+  @apply text-sm font-medium;
+}
+
+.time {
+  @apply text-xs;
+}
