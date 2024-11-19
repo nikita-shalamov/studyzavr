@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import { useState } from "react";
 import { Button } from "@nextui-org/react";
 import styles from "./registrationForm.module.scss";
 import { SubmitHandler, useForm } from "react-hook-form";
@@ -12,6 +12,8 @@ import {
 import Link from "next/link";
 import Image from "next/image";
 import AccountType from "../accoutType/AccountType";
+import useAuthUser from "@/hooks/useAuthUser";
+import { redirect } from "next/navigation";
 
 const RegistrationForm = () => {
   const {
@@ -20,13 +22,21 @@ const RegistrationForm = () => {
     formState: { errors },
   } = useForm<IRegistrationData>();
 
-  const onSubmit: SubmitHandler<IRegistrationData> = (data) => {
-    console.log(data);
+  const { registrationFunction, error, loading, success } = useAuthUser();
+
+  const onSubmit: SubmitHandler<IRegistrationData> = async (data) => {
+    const res = await registrationFunction({
+      ...data,
+      profileType: selected,
+    });
+    if (res.user.profileType === "student") {
+      redirect("/student/homework");
+    } else {
+      redirect("/teacher/homework");
+    }
   };
 
   const [viewPassword, setViewPassword] = useState(true);
-  const incorrectData = false;
-  // const [incorrectData, setIncorrectData] = useState(false);
   const [selected, setSelected] = useState<string>("student");
 
   return (
@@ -90,11 +100,10 @@ const RegistrationForm = () => {
               />
               <button
                 className={styles.eyeButton}
-                onClick={() =>
-                  setViewPassword((prevView) => {
-                    return !prevView;
-                  })
-                }
+                onClick={(event) => {
+                  event.preventDefault();
+                  setViewPassword((prevView) => !prevView);
+                }}
               >
                 <Image
                   src={viewPassword ? "/icons/eye.svg" : "/icons/eye-close.svg"}
@@ -109,19 +118,24 @@ const RegistrationForm = () => {
               <p className={styles.error}>{errors.password.message}</p>
             )}
           </div>
-          {incorrectData && (
+          {error && (
             <p className={styles.error} style={{ textAlign: "center" }}>
-              Неверный телефон или пароль!
+              {error}
             </p>
           )}
           <Button
             type="submit"
             size="lg"
             className={styles.button}
-            color="primary"
+            color={!success ? "primary" : "success"}
             fullWidth
+            isLoading={loading}
           >
-            Регистрация
+            {!success
+              ? `Регистрация как ${
+                  selected === "student" ? "ученик" : "преподаватель"
+                }`
+              : `Регистрация успешна!`}
           </Button>
         </form>
         <div className={styles.anotherAuthPage}>

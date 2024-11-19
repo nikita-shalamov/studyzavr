@@ -15,7 +15,7 @@
 }
 
 .button {
-  @apply text-lg h-auto p-4 mt-2;
+  @apply text-lg h-auto p-4 mt-2 max-h-[60px];
 }
 
 .form {

@@ -10,6 +10,10 @@
 !.yarn/releases
 !.yarn/versions
 
+
+src/components/Schedule/*
+/prisma
+
 # testing
 /coverage
 

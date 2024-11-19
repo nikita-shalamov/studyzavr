@@ -19,7 +19,7 @@ const AccountType = ({ onChange, currentValue }: AccountTypesProps) => {
         color="primary"
       >
         <Tab
-          key="login"
+          key="student"
           title={
             <div className={styles.authTab}>
               <span>👨🏻‍🎓</span>
@@ -29,7 +29,7 @@ const AccountType = ({ onChange, currentValue }: AccountTypesProps) => {
           className={styles.tab}
         />
         <Tab
-          key="registration"
+          key="teacher"
           title={
             <div className={styles.authTab}>
               <span>👩🏼‍🏫</span>
