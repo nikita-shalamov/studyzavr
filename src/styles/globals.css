@@ -25,6 +25,10 @@ body {
   font-family: "SF Pro Text", sans-serif;
 }
 
+.pageTitle {
+  @apply text-4xl font-bold mb-5;
+}
+
 .container {
   margin: 0 auto;
 }

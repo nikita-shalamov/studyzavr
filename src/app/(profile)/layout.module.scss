@@ -1,0 +1,7 @@
+.mainBlock {
+  @apply w-full bg-white h-full rounded-3xl overflow-auto p-10;
+}
+
+.layoutContainer {
+  @apply flex justify-center items-start gap-5 h-[100vh] w-full bg-primary p-6;
+}

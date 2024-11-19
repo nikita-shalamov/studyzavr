@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import { useState } from "react";
 import { Button } from "@nextui-org/react";
 import styles from "./loginForm.module.scss";
 import { SubmitHandler, useForm } from "react-hook-form";
@@ -12,6 +12,9 @@ import {
 import Link from "next/link";
 import Image from "next/image";
 import AccountType from "../accoutType/AccountType";
+import useAuthUser from "@/hooks/useAuthUser";
+import { redirect } from "next/navigation";
+import { useUserStore } from "@/store/useUserStore";
 
 const LoginForm = () => {
   const {
@@ -20,13 +23,25 @@ const LoginForm = () => {
     formState: { errors },
   } = useForm<ILoginData>();
 
-  const onSubmit: SubmitHandler<ILoginData> = (data) => {
-    console.log(data);
+  const { loginFunction, error, loading, success } = useAuthUser();
+  const setUser = useUserStore((state) => state.setUser);
+  const onSubmit: SubmitHandler<ILoginData> = async (data) => {
+    const res = await loginFunction({
+      ...data,
+      phoneNumber: data.phoneNumber,
+      profileType: selected,
+    });
+    if (res.user) {
+      setUser({ userId: res.user.id, ...res.user });
+      if (res.user.profileType === "student") {
+        redirect("/student/schedule");
+      } else {
+        redirect("/teacher/schedule");
+      }
+    }
   };
 
   const [viewPassword, setViewPassword] = useState(true);
-  const incorrectData = false;
-  // const [incorrectData, setIncorrectData] = useState(false);
   const [selected, setSelected] = useState<string>("student");
 
   return (
@@ -72,11 +87,10 @@ const LoginForm = () => {
               />
               <button
                 className={styles.eyeButton}
-                onClick={() =>
-                  setViewPassword((prevView) => {
-                    return !prevView;
-                  })
-                }
+                onClick={(event) => {
+                  event.preventDefault();
+                  setViewPassword((prevView) => !prevView);
+                }}
               >
                 <Image
                   src={viewPassword ? "/icons/eye.svg" : "/icons/eye-close.svg"}
@@ -91,19 +105,24 @@ const LoginForm = () => {
               <p className={styles.error}>{errors.password.message}</p>
             )}
           </div>
-          {incorrectData && (
+          {error && (
             <p className={styles.error} style={{ textAlign: "center" }}>
-              Неверный телефон или пароль!
+              {error}
             </p>
           )}
           <Button
             type="submit"
             size="lg"
             className={styles.button}
-            color="primary"
+            color={!success ? "primary" : "success"}
             fullWidth
+            isLoading={loading}
           >
-            Войти
+            {!success
+              ? `Войти как ${
+                  selected === "student" ? "ученик" : "преподаватель"
+                }`
+              : `Успешный вход!`}
           </Button>
         </form>
         <div className={styles.anotherAuthPage}>
