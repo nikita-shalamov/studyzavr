@@ -23,13 +23,13 @@ const UploadFiles = ({ files, setFiles }: UploadFilesProps) => {
       );
 
       if (filteredFiles.length > 0) {
-        setFiles([...files, ...filteredFiles]); // Явное объединение массивов
+        setFiles([...files, ...filteredFiles]);
       }
     }
   };
 
   const handleDelete = (fileName: string) => {
-    setFiles(files.filter((file) => file.name !== fileName)); // Используем `files` напрямую
+    setFiles(files.filter((file) => file.name !== fileName));
   };
 
   return (

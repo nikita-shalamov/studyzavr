@@ -1,4 +1,4 @@
-import axiosInstance from "@/lib/axios"; // Путь к вашему axiosInstance
+import axiosInstance from "@/lib/axios";
 
 export const getNoneConfirmedStudents = async (tutorId: string) => {
   try {

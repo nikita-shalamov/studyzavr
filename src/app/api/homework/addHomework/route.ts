@@ -7,8 +7,6 @@ export async function POST(req: Request) {
   try {
     const formData = await req.formData();
 
-    console.log(formData);
-
     const files = formData.getAll("files") as File[];
     const fileNames = formData.getAll("fileNames") as string[];
     const fileRandomNames = formData.getAll("fileNamesRandom") as string[];

@@ -1,8 +1,8 @@
 "use client";
 
 import { IHomeworkCard } from "@/types/homeworkCard.types";
-import HomeWorkCard from "../homeWorkCard/homeWorkCard";
-import Spinner from "../loader/Spinner";
+import HomeWorkCard from "../../homeWorkCard/homeWorkCard";
+import Spinner from "../../loader/Spinner";
 import styles from "./homeWorkCards.module.scss";
 import { useParams } from "next/navigation";
 import { useUserStore } from "@/store/useUserStore";
@@ -19,8 +19,6 @@ const HomeWorkCards = () => {
   if (isLoading) {
     return <Spinner />;
   }
-
-  console.log(homework, user?.userId, slug);
 
   return (
     <div className={styles.cards}>

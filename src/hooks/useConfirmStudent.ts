@@ -22,7 +22,7 @@ const useConfirmStudent = () => {
         err?.response?.data?.message || "Ошибка при подтверждении ученика"
       );
     } finally {
-      setLoading(false); // Останавливаем индикатор загрузки
+      setLoading(false);
     }
   };
 

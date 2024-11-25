@@ -1,5 +1,5 @@
 .infoCol {
-  @apply w-1/2 min-h-[100vh] bg-primary relative;
+  @apply w-1/2 min-h-[100vh] bg-primary relative px-6;
 }
 
 .picture {
@@ -16,4 +16,10 @@
 
 .subtitle {
   @apply ml-[100px] mt-[30px] text-white text-[26px] font-normal;
+}
+
+@media (max-width: 1199px) {
+  .infoCol {
+    display: none;
+  }
 }

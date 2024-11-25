@@ -1,0 +1,11 @@
+.pagination {
+  @apply flex justify-end gap-2 items-center;
+}
+
+.paginationButton {
+  @apply p-1;
+}
+
+.todayButton {
+  @apply text-primary;
+}

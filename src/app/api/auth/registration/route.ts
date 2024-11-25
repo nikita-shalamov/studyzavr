@@ -6,11 +6,11 @@ import {
   validatePassword,
   validatePhoneNumber,
 } from "@/helpers/validateLoginData";
+import { v4 as uuidv4 } from "uuid";
 
 export async function POST(req: Request) {
-  const { name, phoneNumber, profileType, password } = await req.json();
-
-  console.log({ name, phoneNumber, profileType, password });
+  const { name, phoneNumber, profileType, password, referralCode } =
+    await req.json();
 
   if (!["student", "teacher"].includes(profileType)) {
     return NextResponse.json(
@@ -41,7 +41,6 @@ export async function POST(req: Request) {
   }
 
   const profileTypeId = profileType === "student" ? 1 : 2;
-
   const formattedPhoneNumber = formatPhoneNumber(phoneNumber);
 
   const existingUser = await prisma.user.findUnique({
@@ -53,8 +52,6 @@ export async function POST(req: Request) {
     },
   });
 
-  console.log(existingUser, formattedPhoneNumber, profileTypeId);
-
   if (existingUser) {
     return NextResponse.json(
       { message: "Такой пользователь уже существует" },
@@ -63,15 +60,7 @@ export async function POST(req: Request) {
   }
 
   const hashedPassword = await bcrypt.hash(password, 10);
-
-  console.log({
-    data: {
-      name,
-      phoneNumber: formattedPhoneNumber,
-      profileTypeId,
-      password: hashedPassword,
-    },
-  });
+  const newReferralCode = uuidv4();
 
   const user = await prisma.user.create({
     data: {
@@ -79,8 +68,26 @@ export async function POST(req: Request) {
       phoneNumber: formattedPhoneNumber,
       profileTypeId,
       password: hashedPassword,
+      referralCode: newReferralCode,
     },
   });
+
+  if (profileType === "student" && referralCode) {
+    const tutor = await prisma.user.findUnique({
+      where: { referralCode },
+    });
+
+    if (tutor && tutor.profileTypeId === 2) {
+      await prisma.tutorStudent.create({
+        data: {
+          tutorId: tutor.id,
+          studentId: user.id,
+          isConfirmed: true,
+        },
+      });
+    }
+  }
+
   return NextResponse.json(
     {
       user: {
@@ -88,6 +95,7 @@ export async function POST(req: Request) {
         phoneNumber: user.phoneNumber,
         profileType,
         name: user.name,
+        referralCode: user.referralCode,
       },
       message: "Пользователь успешно создан!",
     },

@@ -29,7 +29,8 @@ export const addHomework = async (data: IAddHomework) => {
   } catch (error: any) {
     console.log("Ошибка загрузки файлов:", error);
     throw new Error(
-      error?.response?.data?.message || "Ошибка во время загрузки файлов"
+      error?.response?.data?.message ||
+        "Ошибка во время добавления домашнего задания"
     );
   }
 };

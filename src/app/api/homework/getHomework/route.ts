@@ -20,10 +20,7 @@ export async function GET(req: Request) {
 
     const homework = await prisma.homework.findMany({
       where: filter,
-      orderBy: [
-        { date: "desc" }, // Сортировка по дате
-        { createdAt: "desc" }, // Сортировка по createdAt внутри одинаковых значений date
-      ],
+      orderBy: [{ date: "desc" }, { createdAt: "desc" }],
     });
 
     return NextResponse.json({ homework }, { status: 200 });

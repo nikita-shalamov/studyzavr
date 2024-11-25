@@ -4,7 +4,7 @@ import bcrypt from "bcryptjs";
 import { formatPhoneNumber } from "@/helpers/formatPhoneNumber";
 
 export async function POST(req: Request) {
-  const { phoneNumber, password, profileType } = await req.json();
+  const { phoneNumber, password, profileType, referralCode } = await req.json();
 
   if (!phoneNumber || !password || !profileType) {
     return NextResponse.json(
@@ -36,6 +36,22 @@ export async function POST(req: Request) {
 
   if (!isPasswordValid) {
     return NextResponse.json({ message: "Неверный пароль" }, { status: 401 });
+  }
+
+  if (profileType === "student" && referralCode) {
+    const tutor = await prisma.user.findUnique({
+      where: { referralCode },
+    });
+
+    if (tutor && tutor.profileTypeId === 2) {
+      await prisma.tutorStudent.create({
+        data: {
+          tutorId: tutor.id,
+          studentId: user.id,
+          isConfirmed: true,
+        },
+      });
+    }
   }
 
   return NextResponse.json(

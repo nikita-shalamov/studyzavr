@@ -18,7 +18,7 @@ import { useUserStore } from "@/store/useUserStore";
 import { redirect } from "next/navigation";
 import useRemoveStudent from "@/hooks/useRemoveStudent";
 
-const UserCard = ({ id, name, img, type }: IStudentCardProps) => {
+const UserCard = ({ id, name, image, type }: IStudentCardProps) => {
   const { confirm } = useConfirmStudent();
   const { remove } = useRemoveStudent();
   const { user } = useUserStore((state) => state);
@@ -35,7 +35,7 @@ const UserCard = ({ id, name, img, type }: IStudentCardProps) => {
           <User
             name={name}
             avatarProps={{
-              src: img,
+              src: image,
             }}
             className={styles.user}
           />
@@ -69,7 +69,7 @@ const UserCard = ({ id, name, img, type }: IStudentCardProps) => {
             <div className="flex flex-wrap gap-4 items-center">
               <Dropdown>
                 <DropdownTrigger>
-                  <Button variant="bordered" isIconOnly size="md">
+                  <Button variant="light" isIconOnly size="md">
                     <Image
                       src={"/icons/settings.svg"}
                       alt={"setting button"}

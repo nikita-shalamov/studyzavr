@@ -1,5 +1,4 @@
-import axiosInstance from "@/lib/axios"; // Путь к вашему axiosInstance
-
+import axiosInstance from "@/lib/axios";
 const getHomework = async (tutorId: string, studentId: string) => {
   try {
     const response = await axiosInstance.get("/homework/getHomework", {

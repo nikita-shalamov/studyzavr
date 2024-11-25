@@ -15,7 +15,7 @@ export async function GET(request: NextRequest) {
         select: {
           id: true,
           name: true,
-          phoneNumber: true,
+          image: true,
         },
       },
     },
