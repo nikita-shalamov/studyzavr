@@ -1,0 +1,11 @@
+.lesson {
+  @apply bg-slate-50 p-1 pl-2 w-full rounded-xl flex flex-col items-start cursor-pointer;
+}
+
+.name {
+  @apply text-sm font-medium;
+}
+
+.time {
+  @apply text-xs;
+}

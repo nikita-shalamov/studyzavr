@@ -11,15 +11,12 @@ export async function GET(req: Request) {
       return NextResponse.json({ message: "Файл не указан" }, { status: 400 });
     }
 
-    const filePath = join(process.cwd(), "files", "uploads2345", fileName); // Путь к файлу
+    const filePath = join(process.cwd(), "files", "uploads2345", fileName);
 
-    // Читаем файл
     const fileBuffer = await readFile(filePath);
 
-    // Определяем тип контента (например, для изображений или других типов)
-    const mimeType = "application/octet-stream"; // Для универсальных файлов
+    const mimeType = "application/octet-stream";
 
-    // Отправляем файл пользователю
     return new NextResponse(fileBuffer, {
       status: 200,
       headers: {

@@ -1,0 +1,10 @@
+.tab {
+  @apply text-lg py-5;
+}
+
+.authTab {
+  @apply flex text-lg gap-2 items-center justify-center;
+}
+.authTab span {
+  @apply text-2xl;
+}/*# sourceMappingURL=accountType.module.css.map */

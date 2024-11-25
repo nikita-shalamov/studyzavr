@@ -4,13 +4,10 @@ import { NextResponse } from "next/server";
 export async function POST(req: Request) {
   const { tutorId, studentId } = await req.json();
 
-  console.log("tutorId, studentId", tutorId, studentId);
-
-  // Проверка существования ученика
   const existsStudent = await prisma.user.findUnique({
     where: {
       id: Number(studentId),
-      profileTypeId: 1, // Убедимся, что это студент
+      profileTypeId: 1,
     },
   });
 
@@ -23,11 +20,10 @@ export async function POST(req: Request) {
     );
   }
 
-  // Проверка существования репетитора
   const existsTutor = await prisma.user.findUnique({
     where: {
       id: Number(tutorId),
-      profileTypeId: 2, // Убедимся, что это репетитор
+      profileTypeId: 2,
     },
   });
 
@@ -40,7 +36,6 @@ export async function POST(req: Request) {
     );
   }
 
-  // Проверка существующей связи
   const existingRelation = await prisma.tutorStudent.findUnique({
     where: {
       tutorId_studentId: {
@@ -59,7 +54,6 @@ export async function POST(req: Request) {
     );
   }
 
-  // Удаление связи
   await prisma.tutorStudent.delete({
     where: {
       tutorId_studentId: {

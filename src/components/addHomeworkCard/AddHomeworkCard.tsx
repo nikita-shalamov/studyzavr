@@ -2,7 +2,7 @@
 
 import { Input, Textarea } from "@nextui-org/input";
 import { useEffect, useState } from "react";
-import InputData from "../inputData/InputData";
+import InputData from "../inputData/InputDate";
 import { Card, CardBody } from "@nextui-org/card";
 import UploadFiles from "../uploadFiles/UploadFiles";
 import styles from "./addHomeworkCard.module.scss";

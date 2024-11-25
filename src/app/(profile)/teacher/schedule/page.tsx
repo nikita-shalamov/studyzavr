@@ -1,5 +1,4 @@
 import Schedule from "@/components/Schedule/Schedule";
-import React from "react";
 
 const TeacherSchedule = () => {
   return (

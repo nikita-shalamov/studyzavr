@@ -16,7 +16,24 @@ export async function GET() {
   //   data: { isConfirmed: false },
   // });
 
-  const updateResult = await prisma.homework.deleteMany();
+  // await prisma.profileTypes.create({
+  //   data: { name: "teacher" },
+  // });
 
-  return new Response(JSON.stringify(updateResult));
+  // const users = await prisma.user.findMany();
+
+  const users = await prisma.user.findMany();
+
+  // for (const user of users) {
+  //   const referralCode = uuidv4(); // Генерация уникального UUID
+
+  //   await prisma.user.update({
+  //     where: { id: user.id },
+  //     data: { referralCode },
+  //   });
+  // }
+
+  // const updateResult = await prisma.homework.deleteMany();
+
+  return new Response(JSON.stringify({ users }));
 }

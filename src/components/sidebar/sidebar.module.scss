@@ -1,5 +1,5 @@
 .sidebarContainer {
-  @apply h-full w-[300px] py-12 px-2 flex flex-col justify-between;
+  @apply h-full w-[300px] py-12 px-2 flex flex-col justify-between min-w-[220px];
 }
 
 .items {
@@ -20,4 +20,21 @@
 
 .contacts {
   @apply flex gap-3 ml-5;
+}
+@media (max-width: 768px) {
+  .sidebarContainer {
+    @apply fixed bottom-0 left-0 h-auto w-full flex-row justify-between bg-primary py-1;
+  }
+  .logo {
+    @apply hidden;
+  }
+  .items {
+    @apply flex-row w-full;
+  }
+  .contacts {
+    @apply hidden;
+  }
+  .item {
+    @apply flex-col gap-1 p-2 text-sm;
+  }
 }

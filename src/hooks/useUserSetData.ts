@@ -16,10 +16,10 @@ const useUserSetData = () => {
         const payload = await getSession();
 
         setUser({
-          userId: payload.userId,
-          name: payload.name,
-          phoneNumber: payload.phoneNumber,
-          profileType: payload.profileType,
+          userId: payload.userId as string,
+          name: payload.name as string,
+          phoneNumber: payload.phoneNumber as string,
+          profileType: payload.profileType as string,
         });
       } catch (error) {
         setError("Failed to verify session");

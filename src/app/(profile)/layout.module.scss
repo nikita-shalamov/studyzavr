@@ -1,7 +1,23 @@
 .mainBlock {
-  @apply w-full bg-white h-full rounded-3xl overflow-auto p-10;
+  @apply w-full bg-white h-full rounded-l-xl overflow-auto p-10;
 }
 
 .layoutContainer {
-  @apply flex justify-center items-start gap-5 h-[100vh] w-full bg-primary p-6;
+  @apply flex justify-center items-start gap-5 h-[100vh] w-full bg-primary pl-2;
+}
+
+@media (max-width: 768px) {
+  .mainBlock {
+    @apply p-5;
+  }
+}
+
+@media (max-width: 768px) {
+  .layoutContainer {
+    @apply p-0 pb-20;
+  }
+
+  .mainBlock {
+    @apply rounded-none;
+  }
 }

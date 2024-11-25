@@ -1,6 +1,6 @@
 export interface IStudentCardProps {
   id?: number;
   name: string;
-  img: string;
+  image: string;
   type: string;
 }

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { ReactNode } from "react";
+import { ReactNode } from "react";
 import styles from "./layout.module.scss";
 import Sidebar from "@/components/sidebar/Sidebar";
 import useUserSetData from "@/hooks/useUserSetData";

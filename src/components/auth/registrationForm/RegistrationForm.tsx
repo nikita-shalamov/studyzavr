@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { Button } from "@nextui-org/react";
-import styles from "./registrationForm.module.scss";
+import styles from "../loginForm/loginForm.module.scss";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { IRegistrationData } from "@/types/authData.types";
 import {

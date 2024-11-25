@@ -10,7 +10,7 @@ const encodedKey = new TextEncoder().encode(secretKey);
 
 export async function createSession(data: IUser) {
   const { userId, name, phoneNumber, profileType } = data;
-  const expiresAt = new Date(Date.now() + 3650 * 24 * 60 * 60 * 1000); // дата окончания сеанса 10 лет
+  const expiresAt = new Date(Date.now() + 3650 * 24 * 60 * 60 * 1000);
   const session = await encrypt({
     userId,
     expiresAt,
@@ -19,7 +19,6 @@ export async function createSession(data: IUser) {
     profileType,
   });
 
-  // сохраняем сессию безопасно в cookie
   (await cookies()).set("session", session, {
     httpOnly: true,
     secure: true,

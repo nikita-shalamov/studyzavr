@@ -7,5 +7,26 @@
 }
 
 .authCol {
-  @apply w-1/2 min-h-[100vh] flex justify-center items-center;
+  @apply w-1/2 min-h-[100vh] flex justify-center items-center p-8;
+}
+
+@media (max-width: 1199px) {
+  .regContainer {
+    @apply justify-center;
+  }
+  .authCol {
+    @apply w-auto;
+  }
+}
+
+@media (max-width: 575px) {
+  .regContainer {
+    @apply px-4;
+  }
+  .authCol {
+    @apply w-full p-0;
+  }
+  .authCard {
+    @apply w-full p-[20px];
+  }
 }

@@ -18,17 +18,8 @@ interface SidebarProps {
 const Sidebar = () => {
   const pathname = usePathname();
   const user = useUserStore((state) => state.user);
-  const loading = useUserStore((state) => state.loading);
 
   const menuItems = user?.profileType === "teacher" ? menuTeacher : menuStudent;
-
-  if (loading) {
-    return (
-      <div className={styles.sidebarContainer}>
-        <Spinner color="default" />
-      </div>
-    );
-  }
 
   return (
     <div className={styles.sidebarContainer}>
@@ -37,20 +28,26 @@ const Sidebar = () => {
         Logo
       </div>
       <div className={styles.items}>
-        {menuItems.map((item: SidebarProps, index: number) => {
-          return (
-            <Link
-              key={index}
-              href={item.link}
-              className={`${styles.item} ${
-                item.link === pathname ? styles.active : null
-              }`}
-            >
-              <Image src={item.icon} alt="" width={24} height={24} />
-              {item.title}
-            </Link>
-          );
-        })}
+        {menuItems ? (
+          menuItems.map((item: SidebarProps, index: number) => {
+            return (
+              <Link
+                key={index}
+                href={item.link}
+                className={`${styles.item} ${
+                  item.link === pathname ? styles.active : null
+                }`}
+              >
+                <Image src={item.icon} alt="" width={24} height={24} />
+                {item.title}
+              </Link>
+            );
+          })
+        ) : (
+          <div className={styles.sidebarContainer}>
+            <Spinner color="default" />
+          </div>
+        )}
       </div>
       <div className={styles.contacts}>
         <Image src="/icons/vk.svg" alt="" width={48} height={48} />
