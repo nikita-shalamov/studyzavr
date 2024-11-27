@@ -61,6 +61,7 @@ export async function POST(req: Request) {
         phoneNumber: user.phoneNumber,
         profileType,
         name: user.name,
+        referralCode: user.referralCode,
       },
     },
     { status: 200 }

@@ -25,7 +25,7 @@ export async function GET(request: NextRequest) {
   }
 
   try {
-    const lessons = await prisma.lessons.findMany({
+    const teacherLessons = await prisma.lessons.findMany({
       where: {
         tutorId: Number(tutorId),
         lessonDate: {
@@ -48,6 +48,25 @@ export async function GET(request: NextRequest) {
         },
       },
     });
+
+    const lessons = await Promise.all(
+      teacherLessons.map(async (lesson) => {
+        const linkData = await prisma.tutorStudent.findFirst({
+          where: {
+            tutorId: lesson.tutorId,
+            studentId: lesson.studentId,
+          },
+          select: {
+            lessonLink: true,
+          },
+        });
+
+        return {
+          ...lesson,
+          lessonLink: linkData?.lessonLink || null,
+        };
+      })
+    );
 
     return NextResponse.json(
       { lessons, message: "Уроки успешно найдены!" },

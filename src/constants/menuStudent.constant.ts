@@ -1,17 +1,17 @@
 export const menuStudent = [
   {
     link: "/student/schedule",
-    icon: "/icons/menu.svg",
+    icon: "/icons/calendar.svg",
     title: "Расписание",
   },
   {
     link: "/student/homework",
-    icon: "/icons/menu.svg",
+    icon: "/icons/homework.svg",
     title: "Домашняя работа",
   },
   {
     link: "/student/profile",
-    icon: "/icons/menu.svg",
+    icon: "/icons/profile.svg",
     title: "Профиль",
   },
 ];

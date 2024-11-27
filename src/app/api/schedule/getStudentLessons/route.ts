@@ -40,12 +40,37 @@ export async function GET(request: NextRequest) {
             name: true,
           },
         },
+        student: {
+          select: {
+            id: true,
+            name: true,
+          },
+        },
       },
     });
 
+    const lessons = await Promise.all(
+      studentLessons.map(async (lesson) => {
+        const linkData = await prisma.tutorStudent.findFirst({
+          where: {
+            tutorId: lesson.tutorId,
+            studentId: lesson.studentId,
+          },
+          select: {
+            lessonLink: true,
+          },
+        });
+
+        return {
+          ...lesson,
+          lessonLink: linkData?.lessonLink || null,
+        };
+      })
+    );
+
     return NextResponse.json(
       {
-        lessons: studentLessons,
+        lessons,
         message: "Уроки успешно найдены!",
       },
       { status: 200 }

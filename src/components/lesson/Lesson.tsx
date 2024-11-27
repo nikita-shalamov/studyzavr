@@ -3,6 +3,7 @@ import "moment-timezone";
 import styles from "./lesson.module.scss";
 import ChangeLessonModal from "../changeLessonModal/ChangeLessonModal";
 import { useDisclosure } from "@nextui-org/react";
+import CopyText from "../CopyText/CopyText";
 
 interface LessonProps {
   lesson: {
@@ -11,6 +12,7 @@ interface LessonProps {
     lessonDate: string;
     id: number;
     lessonWas: boolean;
+    lessonLink: string;
   };
   type: "student" | "teacher";
 }
@@ -27,6 +29,9 @@ const Lesson = ({ lesson, type }: LessonProps) => {
             <span className={styles.time}>
               {moment(lesson.lessonDate).tz(timezone).format("HH:mm")}
             </span>
+            {lesson.lessonLink && (
+              <CopyText text={"Ссылка на урок"} link={lesson.lessonLink} />
+            )}
           </div>
           <ChangeLessonModal
             isOpen={isOpen}
@@ -43,6 +48,9 @@ const Lesson = ({ lesson, type }: LessonProps) => {
           <span className={styles.time}>
             {moment(lesson.lessonDate).tz(timezone).format("HH:mm")}
           </span>
+          {lesson.lessonLink && (
+            <CopyText text={"Ссылка на урок"} link={lesson.lessonLink} />
+          )}
         </div>
       )}
     </>
