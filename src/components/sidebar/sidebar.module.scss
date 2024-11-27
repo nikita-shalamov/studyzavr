@@ -22,19 +22,25 @@
   @apply flex gap-3 ml-5;
 }
 @media (max-width: 768px) {
+  .name {
+    @apply hidden;
+  }
   .sidebarContainer {
-    @apply fixed bottom-0 left-0 h-auto w-full flex-row justify-between bg-primary py-1;
+    @apply fixed bottom-0 left-0 h-auto w-full flex-row bg-primary py-2;
   }
   .logo {
     @apply hidden;
   }
   .items {
-    @apply flex-row w-full;
+    // @apply flex-row w-full justify-around;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(30px, 1fr));
+    width: 100%;
   }
   .contacts {
     @apply hidden;
   }
   .item {
-    @apply flex-col gap-1 p-2 text-sm;
+    @apply flex-col gap-1 p-3 text-sm;
   }
 }

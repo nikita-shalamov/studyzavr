@@ -3,4 +3,5 @@ export interface IUser {
   name: string;
   phoneNumber: string;
   profileType: string;
+  referralCode: string;
 }

@@ -20,6 +20,7 @@ const useUserSetData = () => {
           name: payload.name as string,
           phoneNumber: payload.phoneNumber as string,
           profileType: payload.profileType as string,
+          referralCode: payload.referralCode as string,
         });
       } catch (error) {
         setError("Failed to verify session");

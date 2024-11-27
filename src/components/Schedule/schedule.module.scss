@@ -3,7 +3,7 @@
 }
 
 .header {
-  @apply flex justify-between items-center mb-3;
+  @apply flex justify-between items-center mb-3 flex-wrap gap-3;
 }
 
 @media (min-width: 992px) and (max-width: 1199px) {

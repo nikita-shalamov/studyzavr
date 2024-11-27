@@ -1,5 +1,5 @@
 import { Select, SelectItem, Avatar } from "@nextui-org/react";
-import useGetStudents from "@/hooks/useGetStudents";
+import useGetStudents from "@/hooks/students/useGetStudents";
 import { useUserStore } from "@/store/useUserStore";
 
 interface StudentSelectorProps {

@@ -8,6 +8,8 @@ import { getSession } from "@/app/lib/session";
 import { getNoneConfirmedStudents } from "@/services/students/getNoneConfirmedStudents.service";
 import { getStudents } from "@/services/students/getStudents.service";
 import { useQuery } from "@tanstack/react-query";
+import { useState, useEffect } from "react";
+import { useUserStore } from "@/store/useUserStore";
 
 const fetchNoneConfirmedStudents = async () => {
   const session = await getSession();
@@ -22,6 +24,13 @@ const fetchStudents = async () => {
 };
 
 export default function TeacherStudents() {
+  const [isMobileView, setIsMobileView] = useState(false);
+  const { user } = useUserStore();
+  const invitationLink = `https://yourlink.ru/registration/${user?.referralCode}`;
+  const codeString = "code";
+
+  console.log(user?.referralCode);
+
   const { data: noneConfirmedStudents } = useQuery({
     queryKey: ["noneConfirmedStudents"],
     queryFn: fetchNoneConfirmedStudents,
@@ -31,16 +40,43 @@ export default function TeacherStudents() {
     queryFn: fetchStudents,
   });
 
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobileView(window.innerWidth < 900);
+    };
+
+    handleResize();
+
+    window.addEventListener("resize", handleResize);
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   return (
     <div>
       <h1 className="pageTitle">Ученики</h1>
+      <div className="font-semibold text-base">
+        Ссылка для приглашения учеников:
+      </div>
       <Snippet
-        symbol="Ваша ссылка:"
         variant="bordered"
         className={styles.copyLink}
         size="sm"
+        symbol=""
+        codeString={codeString}
       >
-        https://yourlink.ru/some-teacher-id-here
+        {isMobileView ? (
+          <button
+            onClick={async () => {
+              await navigator.clipboard.writeText(invitationLink);
+            }}
+            className={styles.copyButton}
+          >
+            Скопировать ссылку
+          </button>
+        ) : (
+          invitationLink
+        )}
       </Snippet>
       <h2 className={styles.blockTitle}>Принять новых учеников:</h2>
       {!noneConfirmedStudents ? (

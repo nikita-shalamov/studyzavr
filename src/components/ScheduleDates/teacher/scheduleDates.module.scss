@@ -16,7 +16,7 @@
 
 @media (min-width: 576px) and (max-width: 1199px) {
   .calendareDates {
-    grid-template-columns: repeat(7, 130px);
+    grid-template-columns: repeat(7, 150px);
     max-width: 100%;
     overflow: scroll;
     scrollbar-width: none;

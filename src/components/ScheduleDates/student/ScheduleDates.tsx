@@ -13,6 +13,7 @@ interface Lesson {
   lessonDate: string;
   id: number;
   lessonWas: boolean;
+  lessonLink: string;
 }
 
 interface ScheduleDatesProps {

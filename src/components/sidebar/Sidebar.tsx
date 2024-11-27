@@ -30,16 +30,17 @@ const Sidebar = () => {
       <div className={styles.items}>
         {menuItems ? (
           menuItems.map((item: SidebarProps, index: number) => {
+            console.log(item?.link, pathname);
             return (
               <Link
                 key={index}
                 href={item.link}
                 className={`${styles.item} ${
-                  item.link === pathname ? styles.active : null
+                  pathname.includes(item.link) ? styles.active : null
                 }`}
               >
                 <Image src={item.icon} alt="" width={24} height={24} />
-                {item.title}
+                <div className={styles.name}>{item.title}</div>
               </Link>
             );
           })
