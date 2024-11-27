@@ -1,7 +1,0 @@
-.cardBody {
-  @apply flex justify-center items-start;
-}
-
-.cardFlex {
-  @apply flex justify-between items-center w-full;
-}/*# sourceMappingURL=studentCard.module.css.map */
