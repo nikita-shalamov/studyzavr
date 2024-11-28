@@ -1,5 +1,13 @@
 import prisma from "@/lib/prisma";
 import { NextRequest, NextResponse } from "next/server";
+import { Prisma } from "@prisma/client";
+
+type LessonWithRelations = Prisma.LessonsGetPayload<{
+  include: {
+    tutor: { select: { id: true; name: true } };
+    student: { select: { id: true; name: true } };
+  };
+}>;
 
 export async function GET(request: NextRequest) {
   const searchParams = request.nextUrl.searchParams;
@@ -25,29 +33,31 @@ export async function GET(request: NextRequest) {
   }
 
   try {
-    const studentLessons = await prisma.lessons.findMany({
-      where: {
-        studentId: Number(userId),
-        lessonDate: {
-          gte: start,
-          lte: end,
-        },
-      },
-      include: {
-        tutor: {
-          select: {
-            id: true,
-            name: true,
+    const studentLessons: LessonWithRelations[] = await prisma.lessons.findMany(
+      {
+        where: {
+          studentId: Number(userId),
+          lessonDate: {
+            gte: start,
+            lte: end,
           },
         },
-        student: {
-          select: {
-            id: true,
-            name: true,
+        include: {
+          tutor: {
+            select: {
+              id: true,
+              name: true,
+            },
+          },
+          student: {
+            select: {
+              id: true,
+              name: true,
+            },
           },
         },
-      },
-    });
+      }
+    );
 
     const lessons = await Promise.all(
       studentLessons.map(async (lesson) => {
