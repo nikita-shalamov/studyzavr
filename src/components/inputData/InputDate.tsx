@@ -27,7 +27,7 @@ export default function InputData({ setDateState, width }: InputDataProps) {
       <I18nProvider locale="ru-RU">
         <DateInput
           label="Дата"
-          value={date}
+          value={date as any}
           onChange={handleDateChange}
           hideTimeZone
           className={`${width}`}
