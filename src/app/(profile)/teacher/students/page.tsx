@@ -26,10 +26,7 @@ const fetchStudents = async () => {
 export default function TeacherStudents() {
   const [isMobileView, setIsMobileView] = useState(false);
   const { user } = useUserStore();
-  const invitationLink = `https://yourlink.ru/registration/${user?.referralCode}`;
-  const codeString = "code";
-
-  console.log(user?.referralCode);
+  const invitationLink = `https://studyzavr.ru/registration/${user?.referralCode}`;
 
   const { data: noneConfirmedStudents } = useQuery({
     queryKey: ["noneConfirmedStudents"],
@@ -63,7 +60,7 @@ export default function TeacherStudents() {
         className={styles.copyLink}
         size="sm"
         symbol=""
-        codeString={codeString}
+        codeString={invitationLink}
       >
         {isMobileView ? (
           <button

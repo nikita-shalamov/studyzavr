@@ -2,6 +2,7 @@ import { Button } from "@nextui-org/react";
 import moment, { Moment } from "moment";
 import Image from "next/image";
 import styles from "./schedulePagination.module.scss";
+import "moment/locale/ru"; // Загружаем локализацию
 
 interface SchedulePaginationProps {
   setDate: (newValue: Moment) => void;

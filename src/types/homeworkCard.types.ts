@@ -5,4 +5,5 @@ export interface IHomeworkCard {
   text: string;
   fileNames: string[];
   fileRandomNames: string[];
+  userType: string;
 }

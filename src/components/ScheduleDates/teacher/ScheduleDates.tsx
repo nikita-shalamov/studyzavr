@@ -6,6 +6,7 @@ import { useUserStore } from "@/store/useUserStore";
 import Spinner from "../../loader/Spinner";
 import Lesson from "../../lesson/Lesson";
 import useGetTeacherLessons from "@/hooks/lessons/useGetTeacherLessons";
+import "moment/locale/ru";
 
 interface Lesson {
   student: { name: string; id: string };

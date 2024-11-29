@@ -48,7 +48,7 @@ export async function POST(req: Request) {
         data: {
           tutorId: tutor.id,
           studentId: user.id,
-          isConfirmed: true,
+          isConfirmed: false,
         },
       });
     }

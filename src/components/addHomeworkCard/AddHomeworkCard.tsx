@@ -7,7 +7,7 @@ import { Card, CardBody } from "@nextui-org/card";
 import UploadFiles from "../uploadFiles/UploadFiles";
 import styles from "./addHomeworkCard.module.scss";
 import { Button } from "@nextui-org/button";
-import useAddHomework from "@/hooks/useAddHomework";
+import useAddHomework from "@/hooks/homework/useAddHomework";
 import { useUserStore } from "@/store/useUserStore";
 import { useParams } from "next/navigation";
 

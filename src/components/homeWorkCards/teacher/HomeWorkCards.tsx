@@ -6,7 +6,7 @@ import Spinner from "../../loader/Spinner";
 import styles from "./homeWorkCards.module.scss";
 import { useParams } from "next/navigation";
 import { useUserStore } from "@/store/useUserStore";
-import useGetHomework from "@/hooks/useGetHomework";
+import useGetHomework from "@/hooks/homework/useGetHomework";
 
 const HomeWorkCards = () => {
   const slug = useParams();
@@ -24,7 +24,11 @@ const HomeWorkCards = () => {
     <div className={styles.cards}>
       {homework &&
         homework.map((item: IHomeworkCard, index: number) => {
-          return <HomeWorkCard key={index} {...item} />;
+          return (
+            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+            // @ts-expect-error
+            <HomeWorkCard userType={user?.profileType} key={index} {...item} />
+          );
         })}
     </div>
   );
