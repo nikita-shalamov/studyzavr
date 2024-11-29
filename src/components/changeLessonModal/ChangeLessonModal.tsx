@@ -95,8 +95,8 @@ const ChangeLessonModal = ({
               label="Дата и время:"
               labelPlacement="outside"
               className="max-w-xs"
-              value={date}
-              onChange={setDate}
+              value={date as any}
+              onChange={setDate as any}
               hideTimeZone
               isInvalid={errors?.dateError}
               errorMessage={errors?.dateError && "Заполните дату и время урока"}
