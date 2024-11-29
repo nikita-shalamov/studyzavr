@@ -1,5 +1,3 @@
-"use server";
-
 import { ILoginData } from "@/types/authData.types";
 import { createSession } from "@/app/lib/session";
 import axios from "@/lib/axios";
@@ -7,8 +5,6 @@ import axios from "@/lib/axios";
 const login = async (data: ILoginData) => {
   try {
     const response = await axios.post("/auth/login", data);
-    console.log("my response", response.data);
-
     if (response.status === 200) {
       await createSession({
         ...response.data.user,

@@ -33,11 +33,11 @@ const LoginForm = () => {
     });
     if (res.user) {
       setUser({ userId: res.user.id, ...res.user });
-      if (res.user.profileType === "student") {
-        redirect("/student/schedule");
-      } else {
-        redirect("/teacher/schedule");
-      }
+      redirect(
+        res.user.profileType === "student"
+          ? "/student/schedule"
+          : "/teacher/schedule"
+      );
     }
   };
 
