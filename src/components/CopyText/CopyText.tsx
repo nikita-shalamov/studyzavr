@@ -23,7 +23,7 @@ const CopyText = ({ text, link }: CopyTextProps) => {
             e.preventDefault();
             e.stopPropagation();
           }}
-          className="flex justify-start items-center gap-1 text-sm text-start"
+          className="flex justify-start items-center gap-1 text-sm text-start text-primary"
         >
           {text}
           <Image
