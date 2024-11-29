@@ -29,7 +29,7 @@ const useAuthUser = () => {
   const loginFunction = async (inputData: ILoginData) => {
     if (status.success) return;
 
-    setStatus({ ...status, loading: true, success: false });
+    setStatus({ error: null, loading: true, success: false });
 
     try {
       const responseData = await login(inputData);
