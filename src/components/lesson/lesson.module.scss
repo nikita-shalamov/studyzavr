@@ -1,5 +1,5 @@
 .lesson {
-  @apply bg-slate-50 p-1 pl-2 w-full rounded-xl flex flex-col items-start cursor-pointer;
+  @apply bg-slate-50 p-1 pl-2 w-full rounded-xl flex flex-col gap-1 items-start cursor-pointer;
 }
 
 .name {
@@ -7,5 +7,5 @@
 }
 
 .time {
-  @apply text-xs;
+  @apply text-sm;
 }

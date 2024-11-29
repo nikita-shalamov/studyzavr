@@ -5,8 +5,6 @@ export async function DELETE(req: Request) {
   try {
     const { studentId, tutorId, homeworkId } = await req.json();
 
-    console.log("delete", { studentId, tutorId, homeworkId });
-
     const homeworkExists = await prisma.homework.findFirst({
       where: {
         id: Number(homeworkId),

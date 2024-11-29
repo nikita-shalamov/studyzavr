@@ -4,24 +4,20 @@ import Image from "next/image";
 const InfoBlock = () => {
   return (
     <div className={styles.infoCol}>
-      <h2 className={styles.title}>Англскул авторизация</h2>
+      <h2 className={styles.title}>Образовательная платформа Стадизавр</h2>
       <h3 className={styles.subtitle}>
-        Англскул - это сервис для репетиторов и учеников
+        Мы помогает ученикам и репетиторам открывать новые возможности,
+        достигать больших высот и развиваться каждый день!
       </h3>
-      {/* <Image
-        src={"/images/illustration-auth.png"}
-        width={480}
-        height={480}
-        alt="il"
-        className={styles.picture}
-      /> */}
-      <Image
-        src={"/images/left-top-circles.svg"}
-        width={200}
-        height={200}
-        alt="circles"
-        className={styles.circles}
-      />
+      <div className={styles.imageContainer}>
+        <Image
+          src={"/images/illustration-auth.webp"}
+          width={200}
+          height={200}
+          alt="il"
+          className={styles.picture}
+        />
+      </div>
     </div>
   );
 };

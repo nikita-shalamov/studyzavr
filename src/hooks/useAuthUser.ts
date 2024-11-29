@@ -12,9 +12,7 @@ const useAuthUser = () => {
 
   const registrationFunction = async (inputData: IRegistrationData) => {
     if (status.success) return;
-
     setStatus({ loading: true, error: null, success: false });
-
     try {
       const responseData = await registration(inputData);
       setStatus({ loading: false, error: null, success: true });
@@ -28,9 +26,7 @@ const useAuthUser = () => {
 
   const loginFunction = async (inputData: ILoginData) => {
     if (status.success) return;
-
     setStatus({ error: null, loading: true, success: false });
-
     try {
       const responseData = await login(inputData);
       setStatus({ loading: false, error: null, success: true });

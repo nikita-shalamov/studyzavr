@@ -76,16 +76,20 @@ export default function TeacherStudents() {
         )}
       </Snippet>
       <h2 className={styles.blockTitle}>Принять новых учеников:</h2>
-      {!noneConfirmedStudents ? (
+      {noneConfirmedStudents === undefined ? (
         <Spinner />
+      ) : noneConfirmedStudents.data.students.length === 0 ? (
+        <p>Пока что нет новых учеников</p>
       ) : (
         <StudentCards type={"new"} data={noneConfirmedStudents.data.students} />
       )}
       <h2 className={styles.blockTitle}>Список учеников:</h2>
-      {!data ? (
+      {data === undefined ? (
         <Spinner />
+      ) : data.students.length === 0 ? (
+        <p>Пока что нет учеников</p>
       ) : (
-        <StudentCards type={"exists"} data={data.data.students} />
+        <StudentCards type={"exists"} data={data.students} />
       )}
     </div>
   );

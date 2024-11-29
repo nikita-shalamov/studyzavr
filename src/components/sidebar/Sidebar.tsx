@@ -24,13 +24,12 @@ const Sidebar = () => {
   return (
     <div className={styles.sidebarContainer}>
       <div className={styles.logo}>
-        <Image src="/icons/menu.svg" alt="" width={30} height={30} />
-        Logo
+        <Image src="/images/logo-mini.webp" alt="" width={48} height={48} />
+        Стадизавр
       </div>
       <div className={styles.items}>
         {menuItems ? (
           menuItems.map((item: SidebarProps, index: number) => {
-            console.log(item?.link, pathname);
             return (
               <Link
                 key={index}
@@ -51,8 +50,20 @@ const Sidebar = () => {
         )}
       </div>
       <div className={styles.contacts}>
-        <Image src="/icons/vk.svg" alt="" width={48} height={48} />
-        <Image src="/icons/telegram.svg" alt="" width={48} height={48} />
+        <a
+          className="no-underline text-black"
+          href="https://vk.com/e.sevryugina2015"
+          target="_blank"
+        >
+          <Image src="/icons/vk.svg" alt="" width={48} height={48} />
+        </a>
+        <a
+          className="no-underline text-black"
+          href="https://t.me/WhiteLilyblooms"
+          target="_blank"
+        >
+          <Image src="/icons/telegram.svg" alt="" width={48} height={48} />
+        </a>
       </div>
     </div>
   );

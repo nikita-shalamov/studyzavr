@@ -15,7 +15,7 @@
 }
 
 .logo {
-  @apply flex text-white text-[28px] font-semibold gap-4 ml-5;
+  @apply flex items-center text-white text-[28px] font-semibold gap-3 ml-2 min-w-12 min-h-12;
 }
 
 .contacts {

@@ -1,4 +1,5 @@
 "use client";
+
 import ExitAccount from "@/components/ExitAccount/ExitAccount";
 import ProfileInfo from "@/components/ProfileInfo/ProfileInfo";
 

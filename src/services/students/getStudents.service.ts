@@ -7,7 +7,7 @@ export const getStudents = async (tutorId: string) => {
         tutorId,
       },
     });
-    return response;
+    return response.data;
   } catch (error: any) {
     console.log("Service error:", error);
     throw new Error(error?.response?.data?.message || "Ошибка во время входа");
