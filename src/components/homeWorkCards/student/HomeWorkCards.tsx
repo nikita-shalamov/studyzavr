@@ -4,7 +4,7 @@ import { IHomeworkCard } from "@/types/homeworkCard.types";
 import HomeWorkCard from "@/components/homeWorkCard/homeWorkCard";
 import Spinner from "@/components/loader/Spinner";
 import styles from "./homeWorkCards.module.scss";
-import useGetHomework from "@/hooks/useGetHomework";
+import useGetHomework from "@/hooks/homework/useGetHomework";
 
 interface HomeWorkCardsProps {
   tutorId: number;
