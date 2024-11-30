@@ -2,8 +2,8 @@
 
 import { useState } from "react";
 import moment from "moment-timezone";
-import ScheduleDates from "@/components/ScheduleDates/student/ScheduleDates";
-import SchedulePagination from "@/components/SchedulePagination/SchedulePagination";
+import ScheduleDates from "@/components/scheduleDates/student/ScheduleDates";
+import SchedulePagination from "@/components/schedulePagination/SchedulePagination";
 
 const StudentSchedule = () => {
   moment.locale("ru");

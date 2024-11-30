@@ -4,48 +4,26 @@ import { Snippet } from "@nextui-org/snippet";
 import styles from "./page.module.scss";
 import StudentCards from "@/components/studentCards/StudentCards";
 import Spinner from "@/components/loader/Spinner";
-import { getSession } from "@/app/lib/session";
-import { getNoneConfirmedStudents } from "@/services/students/getNoneConfirmedStudents.service";
-import { getStudents } from "@/services/students/getStudents.service";
-import { useQuery } from "@tanstack/react-query";
 import { useState, useEffect } from "react";
 import { useUserStore } from "@/store/useUserStore";
-
-const fetchNoneConfirmedStudents = async () => {
-  const session = await getSession();
-  const response = await getNoneConfirmedStudents(session?.userId as string);
-  return response;
-};
-
-const fetchStudents = async () => {
-  const session = await getSession();
-  const response = await getStudents(session?.userId as string);
-  return response;
-};
+import useGetStudents from "@/hooks/students/useGetStudents";
+import useGetNoneConfirmedStudents from "@/hooks/students/useGetNoneConfirmedStudents";
 
 export default function TeacherStudents() {
   const [isMobileView, setIsMobileView] = useState(false);
-  const { user } = useUserStore();
+  const user = useUserStore((state) => state.user);
   const invitationLink = `https://studyzavr.ru/registration/${user?.referralCode}`;
-
-  const { data: noneConfirmedStudents } = useQuery({
-    queryKey: ["noneConfirmedStudents"],
-    queryFn: fetchNoneConfirmedStudents,
-  });
-  const { data } = useQuery({
-    queryKey: ["students"],
-    queryFn: fetchStudents,
-  });
+  const { students } = useGetStudents(user?.userId as string);
+  const { students: noneConfirmedStudents } = useGetNoneConfirmedStudents(
+    user?.userId as string
+  );
 
   useEffect(() => {
     const handleResize = () => {
       setIsMobileView(window.innerWidth < 900);
     };
-
     handleResize();
-
     window.addEventListener("resize", handleResize);
-
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
@@ -78,18 +56,18 @@ export default function TeacherStudents() {
       <h2 className={styles.blockTitle}>Принять новых учеников:</h2>
       {noneConfirmedStudents === undefined ? (
         <Spinner />
-      ) : noneConfirmedStudents.data.students.length === 0 ? (
+      ) : noneConfirmedStudents.length === 0 ? (
         <p>Пока что нет новых учеников</p>
       ) : (
-        <StudentCards type={"new"} data={noneConfirmedStudents.data.students} />
+        <StudentCards type={"new"} data={noneConfirmedStudents} />
       )}
       <h2 className={styles.blockTitle}>Список учеников:</h2>
-      {data === undefined ? (
+      {students === undefined ? (
         <Spinner />
-      ) : data.students.length === 0 ? (
+      ) : students.length === 0 ? (
         <p>Пока что нет учеников</p>
       ) : (
-        <StudentCards type={"exists"} data={data.students} />
+        <StudentCards type={"exists"} data={students} />
       )}
     </div>
   );

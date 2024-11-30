@@ -11,11 +11,11 @@ import {
 } from "@/helpers/validateLoginData";
 import Link from "next/link";
 import Image from "next/image";
-import useAuthUser from "@/hooks/useAuthUser";
+import useAuthUser from "@/hooks/user/useAuthUser";
 import { redirect, useParams } from "next/navigation";
 import { useUserStore } from "@/store/useUserStore";
-import YourTeacher from "@/components/YourTeacher/YourTeacher";
-import useGetMyTeacher from "@/hooks/useGetMyTeacher";
+import YourTeacher from "@/components/yourTeacher/YourTeacher";
+import useGetMyTeacher from "@/hooks/teachers/useGetMyTeacher";
 import Spinner from "@/components/loader/Spinner";
 
 const LoginFormRef = () => {

@@ -10,6 +10,7 @@ import Image from "next/image";
 import { useUserStore } from "@/store/useUserStore";
 import { useParams } from "next/navigation";
 import useDeleteHomework from "@/hooks/homework/useDeleteHomework";
+import { useState, useEffect } from "react";
 
 const HomeWorkCard = ({
   id,
@@ -20,6 +21,7 @@ const HomeWorkCard = ({
   fileRandomNames,
   userType,
 }: IHomeworkCard) => {
+  const [windowWidth, setWindowWidth] = useState(0);
   const slug = useParams();
   const user = useUserStore((state) => state.user);
   const { deleteHomeworkFunc } = useDeleteHomework();
@@ -30,13 +32,22 @@ const HomeWorkCard = ({
       id.toString()
     );
   };
+
+  useEffect(() => {
+    const updateWidth = () => setWindowWidth(window.innerWidth);
+    updateWidth();
+    window.addEventListener("resize", updateWidth);
+
+    return () => window.removeEventListener("resize", updateWidth);
+  }, []);
+
   return (
     <Card className={styles.cardContainer}>
       <CardBody>
         <div className={styles.homeWorkCard}>
           <div className={styles.header}>
             <h3 className={styles.title}>{title}</h3>
-            <div className="flex gap-2 items-center">
+            <div className={styles.dateHeader}>
               <div className={styles.date}>{formatDate(date)}</div>
               {userType === "teacher" && (
                 <Button
@@ -44,35 +55,37 @@ const HomeWorkCard = ({
                   color="danger"
                   size="sm"
                   onClick={() => handleDelete()}
-                  isIconOnly
+                  startContent={
+                    <Image
+                      src={"/icons/trash.svg"}
+                      alt={"delete homework"}
+                      width={16}
+                      height={16}
+                    />
+                  }
                 >
-                  <Image
-                    src={"/icons/trash.svg"}
-                    alt={"delete homework"}
-                    width={16}
-                    height={16}
-                  />
+                  Удалить
                 </Button>
               )}
             </div>
           </div>
-          <div className="text-base text-gray-700 mt-5">{text}</div>
+          <div className="text-base text-gray-700 mt-3">{text}</div>
           <ul className="mt-2">
             {fileNames.length > 0 ? (
               fileNames.map((fileName, index) => (
-                <li
-                  key={index}
-                  className="flex justify-between items-center py-2 px-2 border-b"
-                >
-                  <span className="text-sm font-medium text-gray-800">
+                <li key={index} className={styles.files}>
+                  <span
+                    className={`text-sm font-medium text-gray-800`}
+                    style={{ maxWidth: windowWidth - 40 - 24 - 16 - 8 - 56 }}
+                  >
                     {fileName}
                   </span>
-                  <div className="space-x-2">
+                  <div className="flex gap-2 ml-2">
                     <button
                       onClick={() =>
                         downloadFile(fileRandomNames[index], fileName)
                       }
-                      className="text-sm text-primary hover:text-primary-700"
+                      className={styles.downloadButton}
                     >
                       Скачать
                     </button>
