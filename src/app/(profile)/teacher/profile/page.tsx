@@ -1,7 +1,7 @@
 "use client";
 
-import ExitAccount from "@/components/ExitAccount/ExitAccount";
-import ProfileInfo from "@/components/ProfileInfo/ProfileInfo";
+import ExitAccount from "@/components/exitAccount/ExitAccount";
+import ProfileInfo from "@/components/profileInfo/ProfileInfo";
 
 const TeacherProfile = () => {
   return (

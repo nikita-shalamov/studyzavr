@@ -2,12 +2,12 @@
 
 import HomeWorkCards from "@/components/homeWorkCards/student/HomeWorkCards";
 import Spinner from "@/components/loader/Spinner";
-import TeacherSelector from "@/components/TeacherSelector/TeacherSelector";
 import useGetTeachers from "@/hooks/teachers/useGetTeachers";
 import { useUserStore } from "@/store/useUserStore";
 import { useEffect, useState } from "react";
 import { SmileOutlined } from "@ant-design/icons";
 import { Result } from "antd";
+import UserSelector from "@/components/userSelector/UserSelector";
 
 const StudentHomework = () => {
   const { user } = useUserStore();
@@ -27,10 +27,10 @@ const StudentHomework = () => {
       <h1 className="pageTitle">Домашняя работа</h1>
       {teachers && teachers?.length ? (
         <>
-          <TeacherSelector
-            tutorId={tutorId}
-            setTutorId={setTutorId}
-            teachers={teachers}
+          <UserSelector
+            selectedId={tutorId}
+            setSelectedId={setTutorId}
+            users={teachers}
           />
           {tutorId && user?.userId && (
             <HomeWorkCards tutorId={tutorId} userId={Number(user?.userId)} />

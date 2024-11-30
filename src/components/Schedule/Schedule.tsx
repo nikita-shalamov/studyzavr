@@ -5,8 +5,8 @@ import { useState } from "react";
 import LessonModal from "../lessonModal/LessonModal";
 import { parseAbsoluteToLocal } from "@internationalized/date";
 import moment from "moment-timezone";
-import SchedulePagination from "../SchedulePagination/SchedulePagination";
-import ScheduleDates from "../ScheduleDates/teacher/ScheduleDates";
+import SchedulePagination from "../schedulePagination/SchedulePagination";
+import ScheduleDates from "../scheduleDates/teacher/ScheduleDates";
 
 const Schedule = () => {
   moment.locale("ru");

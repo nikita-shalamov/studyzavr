@@ -63,13 +63,13 @@ const LessonModal = ({ date, setDate }: LessonModalProps) => {
 
   return (
     <div>
-      <Button onPress={onOpen} color="primary" variant="solid" size="sm">
+      <Button onPress={onOpen} color="primary" variant="solid" size="md">
         Добавить урок
         <Image
           src={"/icons/plus.svg"}
           alt={"plus button"}
-          width={20}
-          height={20}
+          width={24}
+          height={24}
         />
       </Button>
       <Modal isOpen={isOpen} onOpenChange={onOpenChange}>

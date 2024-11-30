@@ -14,8 +14,10 @@ const useConfirmStudent = () => {
     try {
       await confirmStudent(tutorId, studentId);
       setSuccess(true);
-      queryClient.invalidateQueries({ queryKey: ["students"] });
-      queryClient.invalidateQueries({ queryKey: ["noneConfirmedStudents"] });
+      queryClient.invalidateQueries({ queryKey: ["students", tutorId] });
+      queryClient.invalidateQueries({
+        queryKey: ["noneConfirmedStudents", tutorId],
+      });
     } catch (err: any) {
       setSuccess(false);
       setError(

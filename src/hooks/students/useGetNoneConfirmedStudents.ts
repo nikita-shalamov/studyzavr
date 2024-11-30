@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { getStudents } from "@/services/students/getStudents.service";
+import { getNoneConfirmedStudents } from "@/services/students/getNoneConfirmedStudents.service";
 
 interface Student {
   id: number;
@@ -11,10 +11,10 @@ interface TutorStudent {
   student: Student;
 }
 
-const useGetStudents = (tutorId: string) => {
+const useGetNoneConfirmedStudents = (tutorId: string) => {
   const { data, isLoading } = useQuery({
-    queryKey: ["students", tutorId],
-    queryFn: () => getStudents(tutorId),
+    queryKey: ["noneConfirmedStudents", tutorId],
+    queryFn: () => getNoneConfirmedStudents(tutorId),
     select: (data: { students: TutorStudent[] }) =>
       data.students.map((item) => item.student),
     enabled: !!tutorId,
@@ -24,4 +24,4 @@ const useGetStudents = (tutorId: string) => {
   return { students: data, isLoading };
 };
 
-export default useGetStudents;
+export default useGetNoneConfirmedStudents;

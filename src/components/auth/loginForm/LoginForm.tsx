@@ -12,7 +12,7 @@ import {
 import Link from "next/link";
 import Image from "next/image";
 import AccountType from "../accoutType/AccountType";
-import useAuthUser from "@/hooks/useAuthUser";
+import useAuthUser from "@/hooks/user/useAuthUser";
 import { redirect } from "next/navigation";
 import { useUserStore } from "@/store/useUserStore";
 

@@ -3,7 +3,7 @@
 import { ReactNode } from "react";
 import styles from "./layout.module.scss";
 import Sidebar from "@/components/sidebar/Sidebar";
-import useUserSetData from "@/hooks/useUserSetData";
+import useUserSetData from "@/hooks/user/useUserSetData";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 const queryClient = new QueryClient();

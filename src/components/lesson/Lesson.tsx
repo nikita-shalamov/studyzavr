@@ -3,7 +3,7 @@ import "moment-timezone";
 import styles from "./lesson.module.scss";
 import ChangeLessonModal from "../changeLessonModal/ChangeLessonModal";
 import { useDisclosure } from "@nextui-org/react";
-import CopyText from "../CopyText/CopyText";
+import CopyText from "../copyText/CopyText";
 
 interface LessonProps {
   lesson: {

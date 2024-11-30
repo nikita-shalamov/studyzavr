@@ -1,12 +1,12 @@
 import { Button, Input } from "@nextui-org/react";
 import styles from "./profileInfo.module.scss";
-import useUserProfileData from "@/hooks/useUserProfileData";
+import useUserProfileData from "@/hooks/user/useUserProfileData";
 import { useUserStore } from "@/store/useUserStore";
 import Spinner from "../loader/Spinner";
 import { useEffect, useState } from "react";
 import debounce from "lodash/debounce";
 import updateData from "@/services/user/updateData.service";
-import useUpdatePassword from "@/hooks/useUpdatePassword";
+import useUpdatePassword from "@/hooks/user/useUpdatePassword";
 import { validatePassword } from "@/helpers/validateLoginData";
 
 const ProfileInfo = () => {

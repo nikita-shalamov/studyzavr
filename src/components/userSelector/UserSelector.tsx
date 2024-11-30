@@ -1,39 +1,39 @@
 "use client";
 
 import { Card, CardBody, User } from "@nextui-org/react";
-import styles from "./teacherSelector.module.scss";
+import styles from "./userSelector.module.scss";
 
-interface ITeacher {
+interface IUser {
   id: number;
   name: string;
   image: string;
 }
 
-interface TeacherSelectorProps {
-  teachers: ITeacher[];
-  tutorId: number | null;
-  setTutorId: (newValue: number) => void;
+interface UserSelectorProps {
+  users: IUser[];
+  selectedId: number | null;
+  setSelectedId: (newValue: number) => void;
 }
 
-const TeacherSelector = ({
-  teachers,
-  setTutorId,
-  tutorId,
-}: TeacherSelectorProps) => {
+const UserSelector = ({
+  users,
+  setSelectedId,
+  selectedId,
+}: UserSelectorProps) => {
   return (
     <div className="max-w-full">
       <div className={styles.container}>
-        {teachers.map((item: ITeacher) => {
+        {users.map((item: IUser) => {
           return (
             <Card
               key={item.id}
-              className={`cursor-pointer ${
-                tutorId === item.id && "border-slate-400 border-1.5"
+              className={`cursor-pointer border-1.5 ${
+                selectedId === item.id && "border-slate-400"
               }`}
             >
               <CardBody
                 onClick={() => {
-                  setTutorId(item.id);
+                  setSelectedId(item.id);
                 }}
               >
                 <User
@@ -52,4 +52,4 @@ const TeacherSelector = ({
   );
 };
 
-export default TeacherSelector;
+export default UserSelector;
