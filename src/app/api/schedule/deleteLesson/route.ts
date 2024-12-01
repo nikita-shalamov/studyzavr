@@ -1,9 +1,18 @@
+import { getSession } from "@/app/lib/session";
 import prisma from "@/lib/prisma";
 import { NextResponse } from "next/server";
 
 export async function DELETE(req: Request) {
   try {
     const { lessonId, tutorId } = await req.json();
+
+    const session = await getSession();
+    if (!session || Number(session.userId) !== Number(tutorId)) {
+      return NextResponse.json(
+        { message: "Вы не авторизованы!" },
+        { status: 401 }
+      );
+    }
 
     const lessonExists = await prisma.lessons.findFirst({
       where: {

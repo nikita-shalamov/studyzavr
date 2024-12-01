@@ -1,6 +1,7 @@
 import prisma from "@/lib/prisma";
 import { NextRequest, NextResponse } from "next/server";
 import { Prisma } from "@prisma/client";
+import { getSession } from "@/app/lib/session";
 
 type LessonWithRelations = Prisma.LessonsGetPayload<{
   include: {
@@ -19,6 +20,14 @@ export async function GET(request: NextRequest) {
     return NextResponse.json(
       { message: "Недостаточно данных для выполнения запроса." },
       { status: 400 }
+    );
+  }
+
+  const session = await getSession();
+  if (!session || Number(session.userId) !== Number(userId)) {
+    return NextResponse.json(
+      { message: "Вы не авторизованы!" },
+      { status: 401 }
     );
   }
 

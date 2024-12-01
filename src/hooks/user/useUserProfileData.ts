@@ -1,10 +1,10 @@
-import getUserData from "@/services/user/getUserData.service";
+import getData from "@/services/user/getData.service";
 import { useQuery } from "@tanstack/react-query";
 
 const useUserProfileData = (userId: string) => {
   const { data, isLoading, isError } = useQuery({
     queryKey: ["userProfileData", userId],
-    queryFn: () => getUserData(userId),
+    queryFn: () => getData(userId),
     enabled: !!userId,
     select: (data: {
       user: {

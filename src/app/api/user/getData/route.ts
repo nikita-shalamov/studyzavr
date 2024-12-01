@@ -1,9 +1,18 @@
+import { getSession } from "@/app/lib/session";
 import prisma from "@/lib/prisma";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(request: NextRequest) {
   const searchParams = request.nextUrl.searchParams;
   const userId = Number(searchParams.get("userId"));
+
+  const session = await getSession();
+  if (!session || Number(session.userId) !== Number(userId)) {
+    return NextResponse.json(
+      { message: "Вы не авторизованы!" },
+      { status: 401 }
+    );
+  }
 
   if (!userId || isNaN(userId)) {
     return NextResponse.json(
