@@ -1,8 +1,17 @@
+import { getSession } from "@/app/lib/session";
 import prisma from "@/lib/prisma";
 import { NextResponse } from "next/server";
 
 export async function POST(req: Request) {
   const { studentId, tutorId, lessonLink } = await req.json();
+
+  const session = await getSession();
+  if (!session || Number(session.userId) !== Number(tutorId)) {
+    return NextResponse.json(
+      { message: "Вы не авторизованы!" },
+      { status: 401 }
+    );
+  }
 
   if (!tutorId || isNaN(tutorId) || !studentId || isNaN(studentId)) {
     return NextResponse.json(

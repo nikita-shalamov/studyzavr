@@ -1,8 +1,17 @@
+import { getSession } from "@/app/lib/session";
 import prisma from "@/lib/prisma";
 import { NextResponse } from "next/server";
 
 export async function POST(req: Request) {
   const { tutorId, studentId } = await req.json();
+
+  const session = await getSession();
+  if (!session || Number(session.userId) !== Number(tutorId)) {
+    return NextResponse.json(
+      { message: "Вы не авторизованы!" },
+      { status: 401 }
+    );
+  }
 
   const existsStudent = await prisma.user.findUnique({
     where: {

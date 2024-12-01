@@ -1,13 +1,23 @@
+import { getSession } from "@/app/lib/session";
 import prisma from "@/lib/prisma";
 import { NextResponse } from "next/server";
 
 export async function PATCH(req: Request) {
   try {
-    const { lessonId, data } = await req.json();
+    const { tutorId, lessonId, data } = await req.json();
+
+    const session = await getSession();
+    if (!session || Number(session.userId) !== Number(tutorId)) {
+      return NextResponse.json(
+        { message: "Вы не авторизованы!" },
+        { status: 401 }
+      );
+    }
 
     const lessonExists = await prisma.lessons.findUnique({
       where: {
         id: Number(lessonId),
+        tutorId: Number(tutorId),
       },
     });
 
@@ -18,6 +28,7 @@ export async function PATCH(req: Request) {
     const updatedLesson = await prisma.lessons.update({
       where: {
         id: Number(lessonId),
+        tutorId: Number(tutorId),
       },
       data: {
         lessonDate: new Date(data.lessonDate),

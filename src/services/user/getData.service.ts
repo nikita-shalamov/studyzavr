@@ -1,6 +1,6 @@
 import axiosInstance from "@/lib/axios";
 
-const getUserData = async (userId: string) => {
+const getData = async (userId: string) => {
   try {
     const response = await axiosInstance.get("/user/getData", {
       params: {
@@ -18,4 +18,4 @@ const getUserData = async (userId: string) => {
   }
 };
 
-export default getUserData;
+export default getData;

@@ -1,11 +1,20 @@
 import { NextResponse } from "next/server";
 import { readFile } from "fs/promises";
 import { join } from "path";
+import { getSession } from "@/app/lib/session";
 
 export async function GET(req: Request) {
   try {
     const url = new URL(req.url);
     const fileName = url.searchParams.get("file");
+
+    const session = await getSession();
+    if (!session) {
+      return NextResponse.json(
+        { message: "Нет доступа к запросу!" },
+        { status: 401 }
+      );
+    }
 
     if (!fileName) {
       return NextResponse.json({ message: "Файл не указан" }, { status: 400 });

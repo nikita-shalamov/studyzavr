@@ -2,6 +2,7 @@ import prisma from "@/lib/prisma";
 import { NextResponse } from "next/server";
 import { writeFile, mkdir } from "fs/promises";
 import { join } from "path";
+import { getSession } from "@/app/lib/session";
 
 export async function POST(req: Request) {
   try {
@@ -15,6 +16,14 @@ export async function POST(req: Request) {
     const date = formData.get("date");
     const tutorId = formData.get("tutorId");
     const studentId = formData.get("studentId");
+
+    const session = await getSession();
+    if (!session || Number(session.userId) !== Number(tutorId)) {
+      return NextResponse.json(
+        { message: "Вы не авторизованы!" },
+        { status: 401 }
+      );
+    }
 
     const folder = "uploads2345";
     const uploadDir = join(process.cwd(), "files", folder);

@@ -43,6 +43,7 @@ const AddHomework = () => {
             />
           }
           disabled={active}
+          className={styles.addButton}
         >
           Добавить домашнее задание
         </Button>

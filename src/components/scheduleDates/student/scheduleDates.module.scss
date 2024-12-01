@@ -11,7 +11,7 @@
 }
 
 .calendareDate {
-  @apply mx-auto text-center p-1 w-fit flex items-center justify-center;
+  @apply mx-auto text-center p-1 w-fit flex items-center justify-center text-lg font-medium;
 }
 
 @media (min-width: 576px) and (max-width: 1199px) {
@@ -26,12 +26,15 @@
 
 @media (max-width: 576px) {
   .calendareDates {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(1, 1fr);
     gap: 20px;
     grid-template-rows: repeat(7, auto);
     max-width: 100%;
     overflow: scroll;
     scrollbar-width: none;
     -ms-overflow-style: none;
+  }
+  .calendareDate {
+    @apply text-lg font-medium;
   }
 }
