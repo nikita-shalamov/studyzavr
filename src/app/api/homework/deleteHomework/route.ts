@@ -1,6 +1,8 @@
 import { getSession } from "@/app/lib/session";
 import prisma from "@/lib/prisma";
 import { NextResponse } from "next/server";
+import { unlink } from "fs/promises";
+import { join } from "path";
 
 export async function DELETE(req: Request) {
   try {
@@ -31,6 +33,23 @@ export async function DELETE(req: Request) {
       );
     }
 
+    // Путь для удаления файлов
+    const folder = "uploads2345";
+    const uploadDir = join(process.cwd(), "files", folder);
+
+    // Удаляем файлы с диска
+    await Promise.all(
+      homeworkExists.fileRandomNames.map(async (fileRandomName) => {
+        const filePath = join(uploadDir, fileRandomName);
+        try {
+          await unlink(filePath); // Удаляем файл
+        } catch (err) {
+          console.error(`Не удалось удалить файл ${fileRandomName}:`, err);
+        }
+      })
+    );
+
+    // Удаляем запись о домашнем задании из базы данных
     await prisma.homework.delete({
       where: {
         id: Number(homeworkId),

@@ -7,7 +7,7 @@
 }
 
 .title {
-  @apply text-xl font-bold;
+  @apply text-xl font-bold w-full;
 }
 
 .date {
@@ -15,7 +15,7 @@
 }
 
 .dateHeader {
-  @apply flex gap-2 items-center justify-end w-full;
+  @apply flex gap-2 items-center justify-end;
 }
 
 .files {
