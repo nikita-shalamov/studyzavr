@@ -11,6 +11,7 @@ import { useUserStore } from "@/store/useUserStore";
 import { useParams } from "next/navigation";
 import useDeleteHomework from "@/hooks/homework/useDeleteHomework";
 import { useState, useEffect } from "react";
+import FileViewer from "../fileViewer/FileViewer";
 
 const HomeWorkCard = ({
   id,
@@ -80,15 +81,20 @@ const HomeWorkCard = ({
                   >
                     {fileName}
                   </span>
-                  <div className="flex gap-2 ml-2">
-                    <button
-                      onClick={() =>
-                        downloadFile(fileRandomNames[index], fileName)
-                      }
-                      className={styles.downloadButton}
-                    >
-                      Скачать
-                    </button>
+                  <div className="flex gap-2">
+                    <FileViewer
+                      fileUrl={`${process.env.NEXT_PUBLIC_API_BASE_URL}/download?file=${fileRandomNames[index]}`}
+                    />
+                    <div className="flex gap-2 ml-2">
+                      <button
+                        onClick={() =>
+                          downloadFile(fileRandomNames[index], fileName)
+                        }
+                        className={styles.downloadButton}
+                      >
+                        Скачать
+                      </button>
+                    </div>
                   </div>
                 </li>
               ))

@@ -37,6 +37,7 @@ const AddHomeworkCard = ({ setActive }: AddHomeworkCardProps) => {
     if (success) {
       setActive(false);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [success]);
 
   return (
