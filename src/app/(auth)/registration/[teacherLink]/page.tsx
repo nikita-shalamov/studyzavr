@@ -1,7 +1,7 @@
-import RegistrationFormRef from "@/components/auth/registrationFormRef/RegistrationFormRef";
+import RegistrationRef from "@/components/auth/registrationRef/RegistrationRef";
 
 const LoginPage = () => {
-  return <RegistrationFormRef />;
+  return <RegistrationRef />;
 };
 
 export default LoginPage;

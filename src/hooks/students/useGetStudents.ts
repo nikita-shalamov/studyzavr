@@ -18,7 +18,7 @@ const useGetStudents = (tutorId: string) => {
     select: (data: { students: TutorStudent[] }) =>
       data.students.map((item) => item.student),
     enabled: !!tutorId,
-    staleTime: 5 * 60 * 1000,
+    staleTime: 5000,
   });
 
   return { students: data, isLoading };

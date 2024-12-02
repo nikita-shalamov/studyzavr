@@ -1,3 +1,4 @@
+import useRemoveStudent from "@/hooks/students/useRemoveStudent";
 import useGetLink from "@/hooks/useGetLink";
 import useUpdateLink from "@/hooks/useUpdateLink";
 import {
@@ -14,7 +15,6 @@ import {
   Input,
   useDisclosure,
 } from "@nextui-org/react";
-import { remove } from "lodash";
 import Image from "next/image";
 import { redirect } from "next/navigation";
 import { useState, useEffect } from "react";
@@ -28,7 +28,7 @@ const StudentCardSettings = ({ user, id }: StudentCardSettingsProps) => {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const { data } = useGetLink(String(id), user?.userId as string);
   const { updateLinkFunc } = useUpdateLink();
-
+  const { remove } = useRemoveStudent();
   const [link, setLink] = useState<null | string>("");
 
   useEffect(() => {

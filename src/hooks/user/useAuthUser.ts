@@ -15,6 +15,8 @@ const useAuthUser = () => {
     setStatus({ loading: true, error: null, success: false });
     try {
       const responseData = await registration(inputData);
+      if (inputData.referralCode) {
+      }
       setStatus({ loading: false, error: null, success: true });
       return responseData;
     } catch (err: any) {

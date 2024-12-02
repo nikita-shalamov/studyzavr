@@ -1,0 +1,11 @@
+.container {
+  @apply text-center flex flex-col gap-4;
+}
+
+.error {
+  @apply text-danger font-semibold;
+}
+
+.goMainButton {
+  @apply w-fit mx-auto;
+}

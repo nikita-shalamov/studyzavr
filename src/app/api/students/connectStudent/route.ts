@@ -2,7 +2,7 @@ import prisma from "@/lib/prisma";
 import { NextResponse } from "next/server";
 
 export async function POST(req: Request) {
-  const { tutorId, studentId } = await req.json();
+  const { referralCode, studentId } = await req.json();
 
   const existsStudent = await prisma.user.findUnique({
     where: {
@@ -13,24 +13,15 @@ export async function POST(req: Request) {
 
   const existsTutor = await prisma.user.findUnique({
     where: {
-      id: Number(tutorId),
+      referralCode,
       profileTypeId: 2,
     },
   });
 
-  if (!existsStudent) {
+  if (!existsStudent || !existsTutor) {
     return NextResponse.json(
       {
-        message: "Студент не найден!",
-      },
-      { status: 400 }
-    );
-  }
-
-  if (!existsTutor) {
-    return NextResponse.json(
-      {
-        message: "Преподаватель не найден!",
+        message: "Студент или преподаватель не найден!",
       },
       { status: 400 }
     );
@@ -39,7 +30,7 @@ export async function POST(req: Request) {
   const existingRelation = await prisma.tutorStudent.findUnique({
     where: {
       tutorId_studentId: {
-        tutorId: Number(tutorId),
+        tutorId: existsTutor.id,
         studentId: Number(studentId),
       },
     },
@@ -54,7 +45,7 @@ export async function POST(req: Request) {
 
   const newRelation = await prisma.tutorStudent.create({
     data: {
-      tutorId: Number(tutorId),
+      tutorId: existsTutor.id,
       studentId: Number(studentId),
       isConfirmed: false,
     },

@@ -44,13 +44,23 @@ export async function POST(req: Request) {
     });
 
     if (tutor && tutor.profileTypeId === 2) {
-      await prisma.tutorStudent.create({
-        data: {
-          tutorId: tutor.id,
-          studentId: user.id,
-          isConfirmed: false,
+      const existingRelation = await prisma.tutorStudent.findUnique({
+        where: {
+          tutorId_studentId: {
+            tutorId: tutor.id,
+            studentId: user.id,
+          },
         },
       });
+
+      if (!existingRelation) {
+        await prisma.tutorStudent.create({
+          data: {
+            tutorId: tutor.id,
+            studentId: user.id,
+          },
+        });
+      }
     }
   }
 

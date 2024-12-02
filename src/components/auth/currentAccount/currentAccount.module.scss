@@ -1,0 +1,27 @@
+.accountCard {
+  @apply bg-white shadow-md rounded-lg p-6 max-w-md mx-auto;
+}
+
+.title {
+  @apply text-xl font-bold mb-4;
+}
+
+.details {
+  @apply flex flex-col gap-4;
+}
+
+.card {
+  @apply mt-3;
+}
+
+.row {
+  @apply flex justify-between;
+}
+
+.label {
+  @apply text-gray-600;
+}
+
+.value {
+  @apply font-medium;
+}

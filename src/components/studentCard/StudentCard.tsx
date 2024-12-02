@@ -30,7 +30,7 @@ const StudentCard = ({ id, name, image, type }: IStudentCardProps) => {
             className={styles.user}
           />
           {type === "new" && (
-            <div className="flex flex-wrap gap-4 items-center">
+            <div className="flex gap-4 items-center justify-between">
               <Button
                 color="default"
                 variant="faded"

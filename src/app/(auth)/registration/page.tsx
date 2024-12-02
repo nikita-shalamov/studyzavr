@@ -1,4 +1,4 @@
-import RegistrationForm from "@/components/auth/registrationForm/RegistrationForm";
+import Registration from "@/components/auth/registration/Registration";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 };
 
 const RegistrationPage = () => {
-  return <RegistrationForm />;
+  return <Registration />;
 };
 
 export default RegistrationPage;

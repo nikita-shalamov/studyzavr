@@ -1,7 +1,9 @@
-import LoginFormRef from "@/components/auth/loginFormRef/LoginFormRef";
+"use client";
+
+import LoginRef from "@/components/auth/loginRef/LoginRef";
 
 const LoginPage = () => {
-  return <LoginFormRef />;
+  return <LoginRef />;
 };
 
 export default LoginPage;
