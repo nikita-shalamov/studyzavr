@@ -27,7 +27,7 @@
   }
   .sidebarContainer {
     @apply fixed bottom-0 left-0 h-auto w-full flex-row bg-primary py-2;
-    z-index: 10000;
+    z-index: 40;
   }
   .logo {
     @apply hidden;
