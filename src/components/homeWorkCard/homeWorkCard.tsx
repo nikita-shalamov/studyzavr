@@ -42,6 +42,8 @@ const HomeWorkCard = ({
     return () => window.removeEventListener("resize", updateWidth);
   }, []);
 
+  console.log(text);
+
   return (
     <Card className={styles.cardContainer}>
       <CardBody>
@@ -70,7 +72,13 @@ const HomeWorkCard = ({
               )}
             </div>
           </div>
-          <div className="text-base text-gray-700 mt-3">{text}</div>
+          <div
+            className="text-base text-gray-700 mt-3"
+            style={{ whiteSpace: "pre-wrap" }}
+          >
+            {text}
+          </div>
+
           <ul className="mt-2">
             {fileNames.length > 0 ? (
               fileNames.map((fileName, index) => (
