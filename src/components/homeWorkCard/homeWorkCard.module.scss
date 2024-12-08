@@ -22,10 +22,6 @@
   @apply flex justify-between items-center py-2 px-2 border-b;
 }
 
-.downloadButton {
-  @apply text-sm text-primary hover:text-primary-700;
-}
-
 @media (max-width: 575px) {
   .header {
     @apply flex-wrap-reverse;

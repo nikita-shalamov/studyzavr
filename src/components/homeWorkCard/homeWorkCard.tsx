@@ -4,7 +4,6 @@ import { formatDate } from "@/helpers/date/formatDate";
 import styles from "./homeWorkCard.module.scss";
 import { Card, CardBody } from "@nextui-org/card";
 import { IHomeworkCard } from "@/types/homeworkCard.types";
-import { downloadFile } from "@/helpers/downloadFile";
 import { Button } from "@nextui-org/react";
 import Image from "next/image";
 import { useUserStore } from "@/store/useUserStore";
@@ -12,6 +11,7 @@ import { useParams } from "next/navigation";
 import useDeleteHomework from "@/hooks/homework/useDeleteHomework";
 import { useState, useEffect } from "react";
 import FileViewer from "../fileViewer/FileViewer";
+import FileDownloadButton from "../FileDownloadButton/FileDownloadButton";
 
 const HomeWorkCard = ({
   id,
@@ -41,8 +41,6 @@ const HomeWorkCard = ({
 
     return () => window.removeEventListener("resize", updateWidth);
   }, []);
-
-  console.log(text);
 
   return (
     <Card className={styles.cardContainer}>
@@ -78,7 +76,6 @@ const HomeWorkCard = ({
           >
             {text}
           </div>
-
           <ul className="mt-2">
             {fileNames.length > 0 ? (
               fileNames.map((fileName, index) => (
@@ -89,19 +86,15 @@ const HomeWorkCard = ({
                   >
                     {fileName}
                   </span>
-                  <div className="flex gap-2">
+                  <div className="flex gap-2 items-center">
                     <FileViewer
                       fileUrl={`${process.env.NEXT_PUBLIC_API_BASE_URL}/download?file=${fileRandomNames[index]}`}
                     />
-                    <div className="flex gap-2 ml-2">
-                      <button
-                        onClick={() =>
-                          downloadFile(fileRandomNames[index], fileName)
-                        }
-                        className={styles.downloadButton}
-                      >
-                        Скачать
-                      </button>
+                    <div className="flex gap-2 ml-2 max-h-5">
+                      <FileDownloadButton
+                        fileRandomName={fileRandomNames[index]}
+                        fileName={fileName}
+                      />
                     </div>
                   </div>
                 </li>
