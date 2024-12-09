@@ -24,6 +24,13 @@ const Sidebar = () => {
   return (
     <div className={styles.sidebarContainer}>
       <div className={styles.logo}>
+        <Image
+          src="/images/new-year-hat.png"
+          alt=""
+          width={36}
+          height={36}
+          className={styles.hat}
+        />
         <Image src="/images/logo-mini.webp" alt="" width={48} height={48} />
         Стадизавр
       </div>
