@@ -16,10 +16,16 @@ export const metadata: Metadata = {
     siteName: "Стадизавр",
     images: [
       {
-        url: "/images/logo-mini.png",
+        url: "/images/logo-mini.png", // логотип для Open Graph
         width: 800,
         height: 600,
         alt: "Логотип Стадизавр",
+      },
+      {
+        url: "/favicons/favicon.ico", // фавикон для Open Graph
+        width: 32,
+        height: 32,
+        alt: "Фавикон Стадизавр",
       },
     ],
   },
