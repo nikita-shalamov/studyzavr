@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { readFile } from "fs/promises";
+import { createReadStream, statSync } from "fs";
 import { join } from "path";
 import { getSession } from "@/app/lib/session";
 
@@ -22,16 +22,18 @@ export async function GET(req: Request) {
 
     const filePath = join(process.cwd(), "files", "uploads2345", fileName);
 
-    const fileBuffer = await readFile(filePath);
+    const stat = statSync(filePath);
+    const fileSize = stat.size;
+    const stream = createReadStream(filePath);
 
-    const mimeType = "application/octet-stream";
+    const headers = new Headers();
+    headers.set("Content-Type", "application/octet-stream");
+    headers.set("Content-Disposition", `attachment; filename="${fileName}"`);
+    headers.set("Content-Length", fileSize.toString());
 
-    return new NextResponse(fileBuffer, {
+    return new NextResponse(stream as any, {
+      headers,
       status: 200,
-      headers: {
-        "Content-Type": mimeType,
-        "Content-Disposition": `attachment; filename="${fileName}"`,
-      },
     });
   } catch (error) {
     console.error("Ошибка при скачивании файла:", error);

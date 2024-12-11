@@ -11,7 +11,7 @@
 }
 
 .date {
-  @apply text-sm min-w-[125px];
+  @apply text-sm min-w-[125px] whitespace-nowrap;
 }
 
 .dateHeader {
