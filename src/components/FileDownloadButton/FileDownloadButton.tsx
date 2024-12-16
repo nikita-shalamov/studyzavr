@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import styles from "./fileDownloadButton.module.scss";
 import { toast } from "react-toastify";
-// import { Spinner } from "@nextui-org/react";
 
 interface FileDownloadButtonProps {
   fileRandomName: string;
@@ -57,7 +56,7 @@ const FileDownloadButton = ({
       toast.error("Ошибка при скачивании файла");
       console.error("Ошибка при скачивании файла:", error);
     } finally {
-      setIsLoading(false); // Завершаем загрузку
+      setIsLoading(false);
     }
   };
 
@@ -69,7 +68,6 @@ const FileDownloadButton = ({
         disabled={isLoading}
         style={isLoading ? { cursor: "pointer" } : {}}
       >
-        {/* {isLoading ? <Spinner size="sm" /> : "Скачать"} */}
         {progress > 0 && isLoading ? <span>{progress}%</span> : "Скачать"}
       </button>
     </div>

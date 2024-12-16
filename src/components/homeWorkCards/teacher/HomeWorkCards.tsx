@@ -22,14 +22,22 @@ const HomeWorkCards = () => {
 
   return (
     <div className={styles.cards}>
-      {homework &&
-        homework.map((item: IHomeworkCard, index: number) => {
+      {homework && (
+        <div className={styles.studentName}>
+          Студент: {homework.student.name}
+        </div>
+      )}
+      {homework?.homework.length ? (
+        homework.homework.map((item: IHomeworkCard, index: number) => {
           return (
             // eslint-disable-next-line @typescript-eslint/ban-ts-comment
             // @ts-expect-error
             <HomeWorkCard userType={user?.profileType} key={index} {...item} />
           );
-        })}
+        })
+      ) : (
+        <p>Нет домашних заданий!</p>
+      )}
     </div>
   );
 };

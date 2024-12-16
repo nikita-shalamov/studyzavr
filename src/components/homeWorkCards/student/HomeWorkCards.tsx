@@ -21,8 +21,8 @@ const HomeWorkCards = ({ tutorId, userId }: HomeWorkCardsProps) => {
 
   return (
     <div className={styles.cards}>
-      {homework?.length ? (
-        homework.map((item: IHomeworkCard) => (
+      {homework?.homework.length ? (
+        homework.homework.map((item: IHomeworkCard) => (
           <HomeWorkCard key={item.id} {...item} />
         ))
       ) : (

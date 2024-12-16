@@ -32,7 +32,13 @@ export async function GET(req: Request) {
       orderBy: [{ date: "desc" }, { createdAt: "desc" }],
     });
 
-    return NextResponse.json({ homework }, { status: 200 });
+    const student = await prisma.user.findUnique({
+      where: {
+        id: Number(studentId),
+      },
+    });
+
+    return NextResponse.json({ homework, student }, { status: 200 });
   } catch (error: any) {
     console.error("Ошибка получения домашнего задания:", error);
     return NextResponse.json(

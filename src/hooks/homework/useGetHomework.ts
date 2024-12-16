@@ -6,7 +6,7 @@ const useGetHomework = (tutorId: string, studentId: string) => {
   const { data, isLoading } = useQuery({
     queryKey: ["homeworkStudent", tutorId, studentId],
     queryFn: () => getHomework(tutorId, studentId),
-    select: (data) => data.data.homework,
+    select: (data) => data.data,
     enabled: queryEnabled,
   });
 
