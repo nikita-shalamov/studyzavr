@@ -77,7 +77,7 @@ const HomeWorkCard = ({
             {text}
           </div>
           <ul className="mt-2">
-            {fileNames.length > 0 ? (
+            {fileNames.length ? (
               fileNames.map((fileName, index) => (
                 <li key={index} className={styles.files}>
                   <span
