@@ -1,0 +1,7 @@
+node_modules
+bun.lockb.backup
+.env
+.git
+.gitignore
+Dockerfile
+docker-compose.yml
