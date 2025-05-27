@@ -3,7 +3,7 @@
 }
 
 .regContainer {
-  @apply flex justify-between items-center min-h-[100vh] w-[100%];
+  @apply flex justify-between items-center min-h-[100vh] w-[100%] bg-blue-100;
 }
 
 .authCol {
