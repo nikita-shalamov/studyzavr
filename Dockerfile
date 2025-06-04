@@ -13,6 +13,8 @@ RUN bun install --frozen-lockfile
 
 COPY . .
 
+RUN bunx prisma generate
+
 RUN bun run build
 
 # 2. Финальный продакшн образ
@@ -29,6 +31,6 @@ COPY --from=builder /app /app
 RUN mkdir -p /app/files/uploads2345
 
 # Авто-миграция при запуске
-CMD bunx prisma migrate deploy && bun start
+CMD sh -c "bunx prisma migrate deploy && bun start"
 
 EXPOSE 3005
