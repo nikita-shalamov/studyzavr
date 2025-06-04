@@ -1,9 +1,5 @@
 node_modules
 .next
-bun.lockb
-.env*
-Dockerfile
-docker-compose.yml
 *.log
 .vscode
 .git
