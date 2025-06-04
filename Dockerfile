@@ -13,9 +13,6 @@ RUN bun install --frozen-lockfile
 
 COPY . .
 
-# Важно: устанавливаем prisma CLI в prod (если он не в deps)
-RUN bun add prisma --production
-
 RUN bun run build
 
 # 2. Финальный продакшн образ
