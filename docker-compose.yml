@@ -5,8 +5,6 @@ services:
     ports:
       - "3005:3005"
     environment:
-      - DATABASE_URL=postgresql://postgres:ghhjdjhxghdh4434@172.17.0.1:5432/studyzavr
-      - NEXT_PUBLIC_API_BASE_URL=http://localhost:5173/api
       - HOSTNAME=0.0.0.0
       - PORT=3005
     volumes:

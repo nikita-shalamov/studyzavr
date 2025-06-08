@@ -19,12 +19,13 @@ import Image from "next/image"
 export default function Home() {
   return (
     <div className="flex flex-col min-h-screen bg-gradient-to-b from-blue-50 to-white">
-      <header className="px-4 lg:px-6 h-16 flex items-center border-b bg-white/80 backdrop-blur-sm sticky top-0 z-50">
-        <Link className="flex items-center justify-center" href="#">
+      <header className="px-4 lg:px-6 py-5 flex flex-wrap items-center justify-between border-b bg-white/80 backdrop-blur-sm sticky top-0 z-50">
+        <Link className="flex items-center justify-center mr-5" href="#">
             <Image src="/images/logo-mini.webp" alt="" width={32} height={32} />
           <span className="ml-2 text-xl font-bold text-gray-900">Studyzavr</span>
         </Link>
-        <nav className="ml-auto flex gap-4 sm:gap-6 mr-4">
+        <div className="flex items-center">
+          <nav className="ml-auto flex gap-4 sm:gap-6 mr-4 max-md:hidden">
           <Link className="text-sm font-medium hover:text-blue-600 transition-colors" href="#features">
           Возможности
           </Link>
@@ -36,17 +37,24 @@ export default function Home() {
           </Link>
         </nav>
         <div className="ml-4 flex gap-2">
-        <Link href="/login">
+        <Link href="/login" className="sm:hidden">
+          <Button variant="default" size="default">
+            Начать
+          </Button>
+        </Link>
+        <Link href="/login" className="max-sm:hidden">
           <Button variant="outline" size="default">
             Ученик
           </Button>
           </Link>
-          <Link href="/login">
+          <Link href="/login" className="max-sm:hidden">
           <Button size="default" className="bg-blue-600 hover:bg-blue-700">
             Преподаватель
           </Button>
           </Link>
         </div>
+        </div>
+        
       </header>
 
       <main className="flex-1">
@@ -321,7 +329,7 @@ export default function Home() {
         className="flex flex-col gap-2 sm:flex-row py-6 w-full shrink-0 items-center px-4 md:px-6 border-t bg-gray-50"
       >
         <div className="container mx-auto">
-          <div className="flex justify-between">
+          <div className="flex justify-between flex-wrap gap-y-4">
             <div className="space-y-4 max-w-[300px]">
               <div className="flex items-center space-x-2">
                 <Image src="/images/logo-mini.webp" alt="" width={32} height={32} />
@@ -332,7 +340,7 @@ export default function Home() {
               </p>
             </div>
 
-            <div className="flex w-fit gap-20">
+            <div className="flex w-fit gap-20 max-sm:gap-10">
               <div className="space-y-4">
               <h3 className="text-lg font-semibold text-gray-900">Платформа</h3>
               <ul className="space-y-2 text-sm">
